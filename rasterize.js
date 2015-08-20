@@ -5,8 +5,8 @@ console.error = function () {
     require("system").stderr.write(Array.prototype.join.call(arguments, ' ') + '\n');
 };
 
-if (system.args.length < 6 || system.args.length > 7) {
-    console.error('Usage: rasterize.js URL filename width format zoom timeout');
+if (system.args.length < 6 || system.args.length > 8) {
+    console.error('Usage: rasterize.js URL filename width format zoom timeout delay');
     console.error('  width: e.g. 1200px');
     console.error('  format: png, jpg');
     console.error('  zoom: 1 or 2 (retina)');
@@ -19,13 +19,20 @@ if (system.args.length < 6 || system.args.length > 7) {
     var height = width * 3/4;
     var format = system.args[4];
     var zoom = parseInt(system.args[5]);
+    var timeout = 5000;
+    var delay = 200;
 
-    if (system.args.length == 6) {
-        page.settings.resourceTimeout = system.args[6];
+    if (system.args.length >= 6) {
+        timeout = parseInt(system.args[6]);
+    }
+
+    if (system.args.length >= 7) {
+        delay = parseInt(system.args[7]);
     }
 
     page.viewportSize = { width: width, height: height};
     page.zoomFactor = zoom;
+    page.settings.resourceTimeout = timeout;
 
     console.error("address: " + address);
     console.error("output: " + output);
@@ -33,6 +40,8 @@ if (system.args.length < 6 || system.args.length > 7) {
     console.error("height: " + height);
     console.error("format: " + format);
     console.error("zoom: " + zoom);
+    console.error("timeout: " + timeout);
+    console.error("delay: " + delay);
 
     page.open(address, function (status) {
         if (status !== 'success') {
@@ -42,7 +51,7 @@ if (system.args.length < 6 || system.args.length > 7) {
             window.setTimeout(function () {
                 page.render(output, format);
                 phantom.exit();
-            }, 200);
+            }, delay);
         }
     });
 }
