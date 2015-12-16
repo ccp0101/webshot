@@ -25,6 +25,10 @@ VALID_FORMATS = {
 }
 
 
+with open(os.path.join(os.path.dirname(__file__), "help.html"), "r") as f:
+    HELP = f.read()
+
+
 class HelloHandler(tornado.web.RequestHandler):
     def get(self):
         self.finish("Hello world")
@@ -43,13 +47,16 @@ class WebshotHandler(tornado.web.RequestHandler):
 
     @tornado.gen.coroutine
     def get(self):
-        self.url = self.get_argument("url")
+        self.url = self.get_argument("url", None)
         self.width = self.get_argument("width", "1200px")
         self.format = self.get_argument("format", "png")
         self.zoom = int(self.get_argument("zoom", "1"))
         self.timeout = int(self.get_argument("timeout", 30000))
         self.delay = int(self.get_argument("delay", "200"))
         self.start_ts = time.time()
+
+        if self.url is None:
+            self.finish(HELP)
 
         assert self.url
         assert self.format in VALID_FORMATS

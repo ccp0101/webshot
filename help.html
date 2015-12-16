@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webpage Screenshot API</title>
+</head>
+<style>
+body {
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+</style>
+<body>
+
+<p>
+This API creates a screenshot of a webpage.
+</p>
+
+<p>
+A screenshot of New York Times homepage: 
+  <a href="/?url=http://www.nytimes.com">/?url=http://www.nytimes.com</a>
+</p>
+
+<p>
+Parameters
+</p>
+<ul>
+  <li><b>width</b>: Browser's viewport width in px. Default: 1200px</li>
+  <li><b>format</b>: Output image format: png or jpg. Default: png</li>
+  <li><b>zoom</b>: Browser's zoom level. Default: 1.</li>
+  <li><b>timeout</b>: Page rendering timeout in miniseconds. Default: 30000.</li>
+  <li><b>delay</b>: Wait before taking a screenshot. Default: 200.</li>
+</ul>
+
+<p>
+Retina (2x) high-resolution screenshot: <a href="/?url=http://www.nytimes.com&zoom=2&width=2048px">/?url=http://www.nytimes.com&zoom=2&width=2048px</a>
+</p>
+
+<p>
+- Changping Chen
+</p>
+
+</body>
+</html>
