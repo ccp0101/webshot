@@ -1,2 +1,2 @@
-ppa:tanguy-patte/phantomjs
-deb http://archive.ubuntu.com/ubuntu trusty multiverse
+# ppa:tanguy-patte/phantomjs
+deb http://archive.ubuntu.com/ubuntu xenial multiverse
