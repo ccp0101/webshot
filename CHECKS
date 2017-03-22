@@ -1,4 +1,1 @@
-WAIT=5     # Wait 1/2 minute
-TIMEOUT=60  # Timeout after a minute
-ATTEMPTS=5 # attempt checks 10 times
 /hello Hello
